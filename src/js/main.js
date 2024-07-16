@@ -3,26 +3,30 @@
 const inputSearch = document.querySelector(".search");
 const buttonSearch = document.querySelector(".button-search");
 const animeContainer = document.querySelector(".animes__search");
-const animeFavorites = document.querySelector(".anime__favorites");
+const animeFavorites = document.querySelector(".animes__favorites");
+
+const retainAnimes = JSON.parse(localStorage.getItem("favoriteAnimes"));
+printAnimes(retainAnimes);
 
 let resultAnimes = [];
 let favoriteAnimes = [];
 
-
 function handleAnimeClick(e) {
   const animeId = e.currentTarget.id;
-  const foundFavoriteAnime = favoriteAnimes.find((anime)=> parseInt(animeId)=== anime.mal_id)
-  if(!foundFavoriteAnime){
-  const animeResult = resultAnimes.find((anime) => parseInt(animeId) === anime.mal_id);
-  favoriteAnimes.push(animeResult);
-  animeFavorites.innerHTML= ""
+  e.currentTarget.classList.add("favorite");
+  const foundFavoriteAnime = favoriteAnimes.find(
+    (anime) => parseInt(animeId) === anime.mal_id
+  );
+  if (!foundFavoriteAnime) {
+    const animeResult = resultAnimes.find(
+      (anime) => parseInt(animeId) === anime.mal_id
+    );
+    favoriteAnimes.push(animeResult);
+    localStorage.setItem("favoriteAnimes", JSON.stringify(favoriteAnimes));
+    animeFavorites.innerHTML = "";
 
-  for(let favoriteAnime of favoriteAnimes){
-    let img = favoriteAnime.images.jpg.image_url
-    let name = favoriteAnime.title
-    animeFavorites.innerHTML += `<div><img src="${img}" /> ${name}</div>`
+    printAnimes(favoriteAnimes);
   }
-}
 }
 
 function handleInput(event) {
@@ -52,6 +56,17 @@ function handleInput(event) {
         animeElement.addEventListener("click", handleAnimeClick);
       }
     });
+}
+
+function printAnimes(animes) {
+  for (let favoriteAnime of animes) {
+    let img = favoriteAnime.images.jpg.image_url;
+    if (!img) {
+      img = `https://via.placeholder.com/210x295/fafafa/666666/?text=CopyAnimu-TV`;
+    }
+    let name = favoriteAnime.title;
+    animeFavorites.innerHTML += `<div class="anime anime--favorite"><img src="${img}" /> ${name}</div>`;
+  }
 }
 
 buttonSearch.addEventListener("click", handleInput);
