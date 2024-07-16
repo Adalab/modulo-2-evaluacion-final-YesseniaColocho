@@ -5,11 +5,9 @@ const buttonSearch = document.querySelector(".button-search");
 const animeContainer = document.querySelector(".animes__search");
 const animeFavorites = document.querySelector(".animes__favorites");
 
-const retainAnimes = JSON.parse(localStorage.getItem("favoriteAnimes"));
-printAnimes(retainAnimes);
-
 let resultAnimes = [];
-let favoriteAnimes = [];
+let favoriteAnimes = JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
+printAnimes(favoriteAnimes);
 
 function handleAnimeClick(e) {
   const animeId = e.currentTarget.id;
@@ -23,7 +21,6 @@ function handleAnimeClick(e) {
     );
     favoriteAnimes.push(animeResult);
     localStorage.setItem("favoriteAnimes", JSON.stringify(favoriteAnimes));
-    animeFavorites.innerHTML = "";
 
     printAnimes(favoriteAnimes);
   }
@@ -51,7 +48,7 @@ function handleInput(event) {
         animeContainer.innerHTML += `<div class="anime" id="${anime.mal_id}" ><img src="${img}"/> ${name}</div>`;
       }
 
-      let animeElements = document.querySelectorAll(".anime");
+      let animeElements = document.querySelectorAll(".animes__search .anime");
       for (let animeElement of animeElements) {
         animeElement.addEventListener("click", handleAnimeClick);
       }
@@ -59,6 +56,7 @@ function handleInput(event) {
 }
 
 function printAnimes(animes) {
+  animeFavorites.innerHTML = "";
   for (let favoriteAnime of animes) {
     let img = favoriteAnime.images.jpg.image_url;
     if (!img) {
