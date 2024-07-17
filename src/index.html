@@ -8,25 +8,24 @@
   </head>
 
   <body>
-
     <header class="search-section">
-      <label class="title" for="search" >Buscador de series Anime</label>
-      <input class="search" type="text" id="search" name="anime">
+      <label class="title" for="search">Buscador de series Anime</label>
+      <input class="search" type="text" id="search" name="anime" />
       <button class="button-search" type="submit">Buscar</button>
     </header>
 
     <section class="animes">
+      <section class="section-favorites">
+        <h3 class="title-favorites">Animes Favoritos</h3>
+        <div class="animes__favorites"></div>
+      </section>
 
-      <div class="animes__favorites">
-
-      </div>
-
-      <div class="animes__search">
-        
-      </div>
+      <section class="results">
+        <h3>Resultados</h3>
+        <div class="animes__search"></div>
+      </section>
     </section>
 
-    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>

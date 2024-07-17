@@ -9,7 +9,7 @@ let resultAnimes = [];
 let favoriteAnimes = JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
 printAnimes(favoriteAnimes);
 
-function handleAnimeClick(e) {
+function handleFavoriteClick(e) {
   const animeId = e.currentTarget.id;
   e.currentTarget.classList.add("favorite");
   const foundFavoriteAnime = favoriteAnimes.find(
@@ -50,7 +50,7 @@ function handleInput(event) {
 
       let animeElements = document.querySelectorAll(".animes__search .anime");
       for (let animeElement of animeElements) {
-        animeElement.addEventListener("click", handleAnimeClick);
+        animeElement.addEventListener("click", handleFavoriteClick);
       }
     });
 }

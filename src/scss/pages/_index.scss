@@ -1,6 +1,6 @@
-body{
-    background: rgb(14, 13, 13);
-    color: white;
+body {
+  background: rgb(14, 13, 13);
+  color: white;
 }
 .search-section {
   margin: 30px 10px;
@@ -8,22 +8,69 @@ body{
   .title {
     display: flex;
     margin-bottom: 5px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    font-size: smaller;
     color: white;
+  }
+  .search {
+    list-style: none;
+    padding: 3px;
+    border-radius: 5px;
+    width: 250px;
+  }
+  .button-search {
+    list-style: none;
+    color: white;
+    background-color: #1cedae;
+    padding: 3px 7px;
+    border-radius: 5px;
   }
 }
 .animes {
   display: flex;
   gap: 70px;
-  > div {
-    min-width: 400px;
+  > section {
+    min-width: 300px;
   }
-  &__search {
-    .favorite {
-      padding: 30px;
-      background: lightpink;
-      color: black;
+  .section-favorites {
+    border: 1px solid #1cedae;
+    text-align: center;
+    border-radius: 0 20px 20px 0;
+    .title-favorites {
+      padding: 20px 10px;
+      background: #1cedae;
+      border-radius: 0 20px 0 0;
+      font-family: Tahoma, sans-serif;
+      font-size: small;
+    }
+  }
+  &__favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    &__search {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      border: 1px solid #1cedae;
+
+      .favorite {
+        padding: 30px;
+        background: #1cedae;
+        color: black;
+      }
+    }
+  .results {
+    h3 {
+      font-size: medium;
+      padding: 20px 10px;
+      background: #1cedae;
+      border-radius: 20px 20px 0px 0px;
+      font-family: Tahoma, sans-serif;
+      font-size: small;
+      text-align: center;
     }
   }
   .anime {
@@ -37,7 +84,7 @@ body{
     }
 
     &--favorite {
-        color: lightpink;
+      color: #1cedae;
       img {
         width: 100px;
       }
