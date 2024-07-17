@@ -4,6 +4,7 @@ const inputSearch = document.querySelector(".search");
 const buttonSearch = document.querySelector(".button-search");
 const animeContainer = document.querySelector(".animes__search");
 const animeFavorites = document.querySelector(".animes__favorites");
+const resetButton = document.querySelector('.js-reset')
 
 let resultAnimes = [];
 let favoriteAnimes = JSON.parse(localStorage.getItem("favoriteAnimes")) || [];
@@ -45,7 +46,15 @@ function handleInput(event) {
         }
 
         const name = anime.title;
-        animeContainer.innerHTML += `<div class="anime" id="${anime.mal_id}" ><img src="${img}"/> ${name}</div>`;
+
+        const favoriteMatch = favoriteAnimes.find(
+          (fav) => fav.mal_id === anime.mal_id
+        );
+        animeContainer.innerHTML += `<div 
+          class="anime ${favoriteMatch ? "favorite" : ""}" 
+          id="${anime.mal_id}" >
+            <img src="${img}"/> ${name}
+        </div>`;
       }
 
       let animeElements = document.querySelectorAll(".animes__search .anime");
@@ -67,4 +76,9 @@ function printAnimes(animes) {
   }
 }
 
+function handleReset (){
+  
+}
+
 buttonSearch.addEventListener("click", handleInput);
+resetButton.addEventListener('click', handleReset);
